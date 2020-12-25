@@ -14,13 +14,14 @@ steps:
   - apt update && apt-get install --no-install-recommends -y gcc-multilib g++-multilib bsdtar rpm libopenjp2-tools
   - npm install
   - node_modules/.bin/electron-builder build --x64 --ia32
+  - node_modules/.bin/electron-builder --linux snap -c.snap.publish=github
   environment:
     GH_TOKEN:
       from_secret: GH_TOKEN
 
 trigger:
   branch:
-  - release
+  - snap
   event:
   - push
 
@@ -42,13 +43,14 @@ steps:
   - export USE_SYSTEM_FPM="true"
   - npm install
   - node_modules/.bin/electron-builder build --arm64
+  - node_modules/.bin/electron-builder --linux snap -c.snap.publish=github
   environment:
     GH_TOKEN:
       from_secret: GH_TOKEN
 
 trigger:
   branch:
-  - release
+  - snap
   event:
   - push
 
@@ -70,12 +72,13 @@ steps:
   - export USE_SYSTEM_FPM="true"
   - npm install
   - node_modules/.bin/electron-builder build --armv7l
+  - node_modules/.bin/electron-builder --linux snap -c.snap.publish=github
   environment:
     GH_TOKEN:
       from_secret: GH_TOKEN
 
 trigger:
   branch:
-  - release
+  - snap
   event:
   - push
