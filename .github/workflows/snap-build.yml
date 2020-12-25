@@ -1,4 +1,4 @@
-name: macOS and Windows build
+name: Linux Snap build
 
 on:
   push:
@@ -7,11 +7,7 @@ on:
       - snap
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest, windows-latest]
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -20,6 +16,6 @@ jobs:
         node-version: '12.18.3'
     - run: npm install -g npm
     - run: npm install
-    - run: npm run dist
+    - run: node_modules/.bin/electron-builder --linux snap -c.snap.publish=github
       env:
         GH_TOKEN: ${{ secrets.github_token }}
