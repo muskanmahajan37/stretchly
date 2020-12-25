@@ -11,7 +11,8 @@ steps:
 - name: Build
   image: amd64/node:12.18.3-buster
   commands:
-  - apt update && apt-get install --no-install-recommends -y gcc-multilib g++-multilib bsdtar rpm libopenjp2-tools
+  - apt update && apt-get install --no-install-recommends -y snapd gcc-multilib g++-multilib bsdtar rpm libopenjp2-tools
+  - apt install snapcraft
   - npm install -g npm
   - npm install
   - node_modules/.bin/electron-builder build --x64 --ia32
@@ -39,7 +40,8 @@ steps:
 - name: Build
   image: arm64v8/node:12.18.3-buster
   commands:
-  - apt update && apt-get install --no-install-recommends -y ruby-full bsdtar rpm libopenjp2-tools
+  - apt update && apt-get install --no-install-recommends -y snapd ruby-full bsdtar rpm libopenjp2-tools
+  - apt install snapcraft
   - gem install fpm -v 1.10.1
   - export USE_SYSTEM_FPM="true"
   - npm install -g npm
@@ -69,7 +71,8 @@ steps:
 - name: Build
   image: arm32v7/node:12.18.3-buster
   commands:
-  - apt update && apt-get install --no-install-recommends -y ruby-full bsdtar rpm libopenjp2-tools
+  - apt update && apt-get install --no-install-recommends -y snapd ruby-full bsdtar rpm libopenjp2-tools
+  - apt install snapcraft
   - gem install fpm -v 1.10.1
   - export USE_SYSTEM_FPM="true"
   - npm install -g npm
